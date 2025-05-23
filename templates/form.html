@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DC SQUARED Proposal Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <img src="{{ url_for('static', filename='logo.jpg') }}" alt="DC SQUARED Logo" class="logo">
+    <h1>DC SQUARED Proposal Generator</h1>
+
+    <form method="POST">
+        <label>Proposal Type:</label>
+        <select name="proposal_type" id="proposal_type" onchange="toggleOptions()">
+            <option value="hybrid">Hybrid</option>
+            <option value="ongrid">On-Grid</option>
+        </select>
+
+        <label>Client:</label>
+        <input type="text" name="client" required>
+        <label>Email Address:</label>
+        <input type="email" name="email" required>
+        <label>Contact No.:</label>
+        <input type="text" name="contact" required>
+        <label>Location:</label>
+        <input type="text" name="location" required>
+        <label>Ideal for Electric Bill:</label>
+        <input type="text" name="electric_bill" required>
+        <label>DU Energy Rate (PHP/KWH):</label>
+        <input type="text" name="energy_rate" value="PHP 12.69 / KWH" required>
+        <label>Proposal Effective Until:</label>
+        <input type="text" name="expiry" required>
+
+        <div id="hybrid-options">
+            <label>System Size:</label>
+            <select name="system_size">
+                <option value="3.48 KWP">3.48 KWP</option>
+                <option value="5.8 KWP">5.8 KWP</option>
+                <option value="6.96 KWP">6.96 KWP</option>
+                <option value="9.28 KWP">9.28 KWP</option>
+                <option value="10.44 KWP">10.44 KWP</option>
+                <option value="11.02 KWP">11.02 KWP</option>
+                <option value="12.76 KWP">12.76 KWP</option>
+                <option value="17.4 KWP">17.4 KWP</option>
+                <option value="24.36 KWP">24.36 KWP</option>
+                <option value="33.64 KWP">33.64 KWP</option>
+            </select>
+        </div>
+
+        <div id="ongrid-options" style="display: none;">
+            <label>System Size (Worry Free - Around Zero Bill):</label>
+            <select name="zero_bill_size">
+                <option value="3.48 KWP">3.48 KWP</option>
+                <option value="5.8 KWP">5.8 KWP</option>
+                <option value="6.96 KWP">6.96 KWP</option>
+                <option value="9.28 KWP">9.28 KWP</option>
+                <option value="11.02 KWP">11.02 KWP</option>
+                <option value="12.76 KWP">12.76 KWP</option>
+                <option value="13.92 KWP">13.92 KWP</option>
+                <option value="16.24 KWP">16.24 KWP</option>
+                <option value="17.4 KWP">17.4 KWP</option>
+                <option value="20.3 KWP">20.3 KWP</option>
+                <option value="22.04 KWP">22.04 KWP</option>
+                <option value="27.84 KWP">27.84 KWP</option>
+            </select>
+
+            <label>System Size (Worry Less - Lower Bill):</label>
+            <select name="lower_bill_size">
+                <option value="3.48 KWP">3.48 KWP</option>
+                <option value="5.8 KWP">5.8 KWP</option>
+                <option value="6.96 KWP">6.96 KWP</option>
+                <option value="9.28 KWP">9.28 KWP</option>
+                <option value="11.02 KWP">11.02 KWP</option>
+                <option value="12.76 KWP">12.76 KWP</option>
+                <option value="13.92 KWP">13.92 KWP</option>
+                <option value="16.24 KWP">16.24 KWP</option>
+                <option value="17.4 KWP">17.4 KWP</option>
+                <option value="20.3 KWP">20.3 KWP</option>
+                <option value="22.04 KWP">22.04 KWP</option>
+                <option value="27.84 KWP">27.84 KWP</option>
+            </select>
+        </div>
+
+        <label>Download Format:</label>
+        <select name="format">
+            <option value="word">Word (.docx)</option>
+        </select>
+
+        <input type="submit" value="Generate Proposal">
+    </form>
+  </div>
+
+  <script>
+    function toggleOptions() {
+      var proposalType = document.getElementById("proposal_type").value;
+      document.getElementById("hybrid-options").style.display = proposalType === "hybrid" ? "block" : "none";
+      document.getElementById("ongrid-options").style.display = proposalType === "ongrid" ? "block" : "none";
+    }
+    window.onload = toggleOptions;
+  </script>
+</body>
+</html>
